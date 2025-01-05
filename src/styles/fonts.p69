@@ -1,4 +1,0 @@
-@font-face {
-	font-family: 'Nunito';
-	src: url('/fonts/nunito/Nunito-VariableFont_wght.ttf') format('truetype');
-}

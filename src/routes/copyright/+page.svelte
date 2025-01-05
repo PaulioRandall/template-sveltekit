@@ -1,8 +1,5 @@
 <script>
-	import PageMetadata from '$lib/PageMetadata.svelte'
 </script>
-
-<PageMetadata title="Copyright" />
 
 <main>
 	<h1>Copyright</h1>

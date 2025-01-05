@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"type": "module",
 	"engines": {
-		"node": "20.x"
+		"node": ">=18"
 	},
 	"repository": {
 		"type": "git",
@@ -12,20 +12,20 @@
 	"scripts": {
 		"clean": "rm -rf .svelte-kit",
 		"fmt": "prettier --plugin prettier-plugin-svelte --log-level warn --write .",
-		"build": "npm run fmt && vite build",
-		"dev": "npm run fmt && vite dev --port 3000",
+		"fmt_del": "",
+		"build": "npm run fmt_del && vite build",
+		"dev": "npm run fmt_del && vite dev --port 3000",
 		"preview": "npm run build && vite preview --port 4000",
 		"commit": "npm run build && cat ./scripts/ready-to-ship.txt",
 		"================================================================": "",
 		"auto-build": "vite build"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "3.2.5",
-		"@sveltejs/kit": "2.6.1",
-		"p69": "3.0.0-dev-5",
-		"prettier": "3.3.3",
-		"prettier-plugin-svelte": "3.2.7",
-		"svelte": "4.2.19",
-		"vite": "5.4.8"
+		"@paulio/p69-svelte": "1.0.0-rc-2",
+		"@sveltejs/adapter-auto": "3.3.1",
+		"@sveltejs/kit": "2.15.1",
+		"prettier": "3.4.2",
+		"svelte": "5.16.1",
+		"vite": "6.0.7"
 	}
 }
