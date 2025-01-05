@@ -1,10 +1,21 @@
 
-const formatters = (rgbMap, options={}) => {
-	options = {
-		defaultFormat: 'hex',
-		...options,
+const asMap = (rgbMap, userOptions = {}) => {
+	const map = asFunc(rgbMap, userOptions)
+
+	for (const name in map) {
+		const colorer = map[name]
+		map[name] = {
+			hex: colorer('hex'),
+			rgb: colorer('rgb'),
+			raw: colorer('raw'),
+		}
 	}
 
+	return map
+}
+
+const asFunc = (rgbMap, userOptions={}) => {
+	const options = prepOptions(userOptions)
 	const result = {}
 
 	for (const name in rgbMap) {
@@ -12,6 +23,13 @@ const formatters = (rgbMap, options={}) => {
 	}
 
 	return result
+}
+
+const prepOptions = (userOptions) => {
+	return {
+		defaultFormat: 'hex',
+		...userOptions,
+	}
 }
 
 const generateFormatterFunc = (rgb, options) => {
@@ -70,7 +88,8 @@ const rgbToHex = (rgb) => {
 }
 
 export default Object.freeze({
-	formatters,
+	asMap,
+	asFunc,
 	rgbToRgbString,
 	rgbToHexString,
 })

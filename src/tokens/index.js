@@ -2,7 +2,7 @@ import Colors from './Colors.js'
 import Sizes from './Sizes.js'
 
 export default {
-	color: Colors.formatters({
+	color: Colors.asFunc({
 		ice_cream: [250, 250, 250],
 		light_sky_purple: [210, 210, 230],
 		very_light_sky_blue: [231, 245, 255],
@@ -31,7 +31,7 @@ export default {
 			nunito: ['Nunito', 'sans-serif', 'Helvetica', 'Verdana'],
 		},
 	},
-	width: Sizes.formatters({
+	width: Sizes.asFunc({
 		min: 320, // px
 		xs: 600,
 		sm: 720,
@@ -40,7 +40,7 @@ export default {
 	}, {
 		defaultFormat: 'px'
 	}),
-	space: Sizes.formatters({
+	space: Sizes.asFunc({
 		xs: 8, // px
 		sm: 16,
 		md: 32,

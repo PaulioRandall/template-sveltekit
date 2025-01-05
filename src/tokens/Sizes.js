@@ -1,5 +1,25 @@
 
-const formatters = (sizeMap, userOptions = {}) => {
+const asMap = (sizeMap, userOptions = {}) => {
+	const map = asFunc(sizeMap, userOptions)
+
+	for (const name in map) {
+		const sizer = map[name]
+		map[name] = {
+			px: sizer('px'),
+			em: sizer('em'),
+			rem: sizer('rem'),
+			pt: sizer('pt'),
+			pc: sizer('pc'),
+			in: sizer('in'),
+			cm: sizer('cm'),
+			mm: sizer('mm'),
+		}
+	}
+
+	return map
+}
+
+const asFunc = (sizeMap, userOptions = {}) => {
 	const options = prepOptions(userOptions)
 	const denominators = calcConversionDenominators(options.pxPerInch)
 
@@ -70,5 +90,6 @@ const round = (n, dp = 3) => {
 }
 
 export default Object.freeze({
-	formatters,
+	asMap,
+	asFunc,
 })
