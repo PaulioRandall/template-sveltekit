@@ -28,7 +28,7 @@
 <style>
 	.header {
 		width: 100%;
-		padding-top: $space.xl;
+		padding-top: $space.xs;
 	}
 
 	.nav {
@@ -37,9 +37,9 @@
 		justify-content: center;
 		align-items: center;
 
-		gap: $space.xl;
+		gap: $space.sm;
 
-		padding: $space.md 0;
+		padding: $space.sm 0;
 	}
 
 	@media only screen and (min-width: 500px) {

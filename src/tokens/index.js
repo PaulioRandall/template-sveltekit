@@ -1,4 +1,5 @@
-import Colors from './util_color.js'
+import Colors from './Colors.js'
+import Sizes from './Sizes.js'
 
 export default {
 	color: Colors.formatters({
@@ -30,18 +31,21 @@ export default {
 			nunito: ['Nunito', 'sans-serif', 'Helvetica', 'Verdana'],
 		},
 	},
-	width: {
-		min: "320px",
-		xs: "600px",
-		sm: "720px",
-		md: "920px",
-		lg: "1200px",
-	},
-	space: {
-		xs: "0.5rem",
-		sm: "1rem",
-		md: "2rem",
-		lg: "4rem",
-		xl: "8rem"
-	},
+	width: Sizes.formatters({
+		min: 320, // px
+		xs: 600,
+		sm: 720,
+		md: 920,
+		lg: 1200,
+	}, {
+		defaultFormat: 'px'
+	}),
+	space: Sizes.formatters({
+		xs: 8, // px
+		sm: 16,
+		md: 32,
+		lg: 64,
+		xl: 128,
+		in: 96,
+	}),
 }
