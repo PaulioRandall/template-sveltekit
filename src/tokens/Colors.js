@@ -1,25 +1,27 @@
+import Color from './Color.js'
 
-const asMap = (rgbMap, userOptions = {}) => {
-	const map = asFunc(rgbMap, userOptions)
+const map = (hexMap, userOptions = {}) => {
+	const result = mappers(hexMap, userOptions)
 
-	for (const name in map) {
-		const colorer = map[name]
-		map[name] = {
+	for (const name in result) {
+		const colorer = result[name]
+		result[name] = {
 			hex: colorer('hex'),
 			rgb: colorer('rgb'),
 			raw: colorer('raw'),
 		}
 	}
 
-	return map
+	return result
 }
 
-const asFunc = (rgbMap, userOptions={}) => {
+const mappers = (hexMap, userOptions={}) => {
 	const options = prepOptions(userOptions)
 	const result = {}
 
-	for (const name in rgbMap) {
-		result[name] = generateFormatterFunc(rgbMap[name], options)
+	for (const name in hexMap) {
+		const color = Color.fromHex(hexMap[name])
+		result[name] = generateMapper(color, options)
 	}
 
 	return result
@@ -32,15 +34,15 @@ const prepOptions = (userOptions) => {
 	}
 }
 
-const generateFormatterFunc = (rgb, options) => {
+const generateMapper = (color, options) => {
 	return (fmt=options.defaultFormat) => {
 		switch (fmt) {
 		case 'hex':
-			return rgbToHexString(rgb)
+			return color.toHexString()
 		case 'rgb':
-			return rgbToRgbString(rgb)		
+			return color.toRgbString()		
 		case 'raw':
-			return rgb
+			return color.toArray()
 		case 'hsl':			
 		case 'hwb':
 		default:
@@ -49,47 +51,7 @@ const generateFormatterFunc = (rgb, options) => {
 	}
 }
 
-// rgbToRgbString converts an RGB or RGBA array, i.e. [r,g,b] or [r,g,b,a],
-// into a CSS RGB or RGBA string, i.e. `rgb(r,g,b)` or `rgba(r,g,b,a)`.
-const rgbToRgbString = (rgb) => {
-	switch (rgb.length) {
-		case 3:
-			return `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]})`
-		case 4:
-			return `rgba(${rgb[0]} ${rgb[1]} ${rgb[2]} / ${rgb[3]})`
-		default:
-			throw new Error(`[P69 Util] Invalid RGB value: '${rgb}'`)
-	}
-}
-
-// stringifyHEX converts an RGB or RGBA array, i.e. [r,g,b] or [r,g,b,a],
-// into a CSS HEX string, i.e. `#RRGGBB` or `#RRGGBBAA`.
-const rgbToHexString = (rgb) => {
-	const hex = rgbToHex(rgb)
-	
-	switch (hex.length) {
-		case 3:
-			return `#${hex[0]}${hex[1]}${hex[2]}`
-		case 4:
-			return `#${hex[0]}${hex[1]}${hex[2]}${hex[3]}`
-		default:
-			throw new Error(`[P69 Util] Invalid HE value: '${hex}'`)
-	}
-}
-
-const rgbToHex = (rgb) => {
-  rgb = structuredClone(rgb)
-  
-  for (let i = 0; i < rgb.length; i++) {
-  	rgb[i] = rgb[i].toString(16).padStart(2, '0')
-  }
-
-  return rgb
-}
-
 export default Object.freeze({
-	asMap,
-	asFunc,
-	rgbToRgbString,
-	rgbToHexString,
+	map,
+	mappers,
 })

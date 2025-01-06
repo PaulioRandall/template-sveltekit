@@ -50,37 +50,37 @@
 	}
 
 	.fmt-pt {
-		width: $space.xl(pt);
+		width: $absSpace.xl(pt);
 		&:after {
-			content: '$space.xl(pt)'
+			content: '$absSpace.xl(pt)'
 		}
 	}
 
 	.fmt-pc {
-		width: $space.xl(pc);
+		width: $absSpace.xl(pc);
 	&:after {
-			content: '$space.xl(pc)'
+			content: '$absSpace.xl(pc)'
 		}
 	}
 
 	.fmt-in {
-		width: $space.xl(in);
+		width: $absSpace.xl(in);
 	&:after {
-			content: '$space.xl(in)'
+			content: '$absSpace.xl(in)'
 		}
 	}
 
 	.fmt-cm {
-		width: $space.xl(cm);
+		width: $absSpace.xl(cm);
 	&:after {
-			content: '$space.xl(cm)'
+			content: '$absSpace.xl(cm)'
 		}
 	}
 
 	.fmt-mm {
-		width: $space.xl(mm);
+		width: $absSpace.xl(mm);
 	&:after {
-			content: '$space.xl(mm)'
+			content: '$absSpace.xl(mm)'
 		}
 	}
 </style>

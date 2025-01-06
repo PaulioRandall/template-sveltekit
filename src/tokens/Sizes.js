@@ -1,13 +1,61 @@
 
-const asMap = (sizeMap, userOptions = {}) => {
-	const map = asFunc(sizeMap, userOptions)
+const map = (sizeMap, userOptions = {}) => {
+	const result = mappers(sizeMap, userOptions)
 
-	for (const name in map) {
-		const sizer = map[name]
-		map[name] = {
+	for (const name in result) {
+		const sizer = result[name]
+		result[name] = {
 			px: sizer('px'),
 			em: sizer('em'),
 			rem: sizer('rem'),
+		}
+	}
+
+	return result
+}
+
+const mappers = (sizeMap, userOptions = {}) => {
+	const options = prepMapOptions(userOptions)
+
+	const results = {}
+
+	for (const name in sizeMap) {
+		results[name] = generateMapper(sizeMap[name], options)
+	}
+
+	return results
+}
+
+const prepMapOptions = (userOptions) => {
+	return {
+		pxPerRem: 16.0, // E.g. base font size
+		defaultFormat: 'rem',
+		...userOptions,
+	}
+}
+
+const generateMapper = (px, options) => {
+	return (fmt=options.defaultFormat) => {
+		switch (fmt) {
+		case 'px':
+			return round(px, 1) + 'px'
+		case 'em':
+			return round(px / options.pxPerRem, 3) + 'em'
+		case 'rem':
+			return round(px / options.pxPerRem, 3) + 'rem'
+		default:
+			throw new Error(`[P69 Util] Size format not supported: '${fmt}'`)
+		}
+	}
+}
+
+const absMap = (sizeMap, userOptions = {}) => {
+	const result = absMappers(sizeMap, userOptions)
+
+	for (const name in result) {
+		const sizer = result[name]
+		result[name] = {
+			px: sizer('px'),
 			pt: sizer('pt'),
 			pc: sizer('pc'),
 			in: sizer('in'),
@@ -16,25 +64,24 @@ const asMap = (sizeMap, userOptions = {}) => {
 		}
 	}
 
-	return map
+	return result
 }
 
-const asFunc = (sizeMap, userOptions = {}) => {
-	const options = prepOptions(userOptions)
+const absMappers = (sizeMap, userOptions = {}) => {
+	const options = prepAbsMapOptions(userOptions)
 	const denominators = calcConversionDenominators(options.pxPerInch)
 
 	const results = {}
 
 	for (const name in sizeMap) {
-		results[name] = generateSizeFunc(sizeMap[name], denominators, options)
+		results[name] = generateAbsMapper(sizeMap[name], denominators, options)
 	}
 
 	return results
 }
 
-const prepOptions = (userOptions) => {
+const prepAbsMapOptions = (userOptions) => {
 	return {
-		pxPerRem: 16.0, // Usually base font size
 		pxPerInch: 96.0, // Some may refer to it as DPI
 		defaultFormat: 'rem',
 		...userOptions,
@@ -56,17 +103,13 @@ const calcConversionDenominators = (PX_PER_INCH) => {
 	}
 }
 
-const generateSizeFunc = (px, denominators, options) => {
+const generateAbsMapper = (px, denominators, options) => {
 	// Not perfect but good enough.
 
 	return (fmt=options.defaultFormat) => {
 		switch (fmt) {
 		case 'px':
 			return round(px, 1) + 'px'
-		case 'em':
-			return round(px / options.pxPerRem, 3) + 'em'
-		case 'rem':
-			return round(px / options.pxPerRem, 3) + 'rem'
 		case 'pt':
 			return round(px / denominators.PX_PER_PT, 1) + 'pt'
 		case 'pc':
@@ -78,7 +121,7 @@ const generateSizeFunc = (px, denominators, options) => {
 		case 'mm':
 			return round(px / denominators.PX_PER_MM, 1) + 'mm'
 		default:
-			throw new Error(`[P69 Util] Size format not supported: '${fmt}'`)
+			throw new Error(`[P69 Util] Absolute size format not supported: '${fmt}'`)
 		}
 	}
 }
@@ -90,6 +133,8 @@ const round = (n, dp = 3) => {
 }
 
 export default Object.freeze({
-	asMap,
-	asFunc,
+	map,
+	mappers,
+	absMap,
+	absMappers,
 })

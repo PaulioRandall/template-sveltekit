@@ -2,17 +2,17 @@ import Colors from './Colors.js'
 import Sizes from './Sizes.js'
 
 export default {
-	color: Colors.asFunc({
-		ice_cream: [250, 250, 250],
-		light_sky_purple: [210, 210, 230],
-		very_light_sky_blue: [231, 245, 255],
-		jet_blue: [30, 85, 175],
-		dark_navy_grey: [5, 10, 60],
-		very_dark_navy: [5, 10, 35],
-		burly_wood: [222, 184, 135],
-		rosy_red: [255, 145, 145],
-		blood_red: [115, 16, 16],
-		very_dark_grey: [40, 40, 40],
+	color: Colors.mappers({
+		ice_cream: '#fafafa',
+		light_sky_purple: '#d2d2e6',
+		very_light_sky_blue: '#e7f5ff',
+		jet_blue: '#1e55af',
+		dark_navy_grey: '#050a3c',
+		very_dark_navy: '#050a23',
+		burly_wood: '#deb887',
+		rosy_red: '#ff9191',
+		blood_red: '#731010',
+		very_dark_grey: '#282828',
 	}),
 	font: {
 		size: {
@@ -31,7 +31,7 @@ export default {
 			nunito: ['Nunito', 'sans-serif', 'Helvetica', 'Verdana'],
 		},
 	},
-	width: Sizes.asFunc({
+	width: Sizes.mappers({
 		min: 320, // px
 		xs: 600,
 		sm: 720,
@@ -40,7 +40,15 @@ export default {
 	}, {
 		defaultFormat: 'px'
 	}),
-	space: Sizes.asFunc({
+	space: Sizes.mappers({
+		xs: 8, // px
+		sm: 16,
+		md: 32,
+		lg: 64,
+		xl: 128,
+		in: 96,
+	}),
+	absSpace: Sizes.absMappers({
 		xs: 8, // px
 		sm: 16,
 		md: 32,
