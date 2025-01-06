@@ -3,6 +3,16 @@
 	src: url('/fonts/nunito/Nunito-VariableFont_wght.ttf') format('truetype');
 }
 
+:root {
+	$variables.light("	");
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		$variables.dark("		");
+	}
+}
+
 *,
 ::before,
 ::after {
@@ -13,11 +23,11 @@
 body {
 	padding: 0;
 	margin: 0;
+	background-color: var(--theme-bg);
 
-	color: $color.very_dark_grey;
-	font-size: $font.size.md;
-	font-family: $font.family.nunito;
-	background-color: $color.ice_cream;
+	color: var(--theme-text);
+	font-size: var(--font-size-md);
+	font-family: var(--font-family-nunito);
 
 	text-size-adjust: 100%;
 	tab-size: 2;
@@ -27,7 +37,7 @@ main {
 	display: flex;
 	flex-direction: column;
 
-	margin: 0 auto $space.xl;
+	margin: 0 auto var(--space-xl);
 }
 
 section {
@@ -37,58 +47,57 @@ section {
 
 	width: 100vw;
 	max-width: 100vw;
-	padding: 0 $space.md; 
-	margin: $space.md auto 0;
+	padding: 0 var(--space-md);
+	margin: var(--space-md) auto 0;
 }
 
 h1, h2, h3 {
 	margin: 0;
-	margin-top: $space.md;
 	padding: 0;
 
 	max-width: 100%;
 
 	font-weight: normal;
-	color: $color.jet_blue;
+	color: var(--theme-strong);
 }
 
-h1, .g-h1 {
-	margin: $space.lg 0;
+h1 {
+	margin: var(--space-lg) 0;
 	padding: 0;
 
 	text-align: center;
 	font-weight: normal;
 	font-style: italic;
-	font-size: $font.size.2xl;
+	font-size: var(--font-size-2xl);
 }
 
-h2, .g-h2 {
-	margin-top: 4rem;
-	font-size: $font.size.lg;
+h2 {
+	margin-top: var(--space-md);
+	font-size: var(--font-size-lg);
 }
 
-h3, .g-h3 {
-	margin-top: 3rem;
-	font-size: $font.size.md;
+h3 {
+	margin-top: var(--space-sm);
+	font-size: var(--font-size-md);
 }
 
 p {
-	margin-top: $space.md;
+	margin-top: var(--space-md);
 	padding: 0;
 
-	max-width: $width.md;
+	max-width: var(--width-md);
 
-	font-size: $font.size.md;
+	font-size: var(--font-size-md);
 	line-height: 1.5em;
 }
 
 strong {
 	font-weight: normal;
-	color: $color.jet_blue;
+	color: var(--theme-strong);
 }
 
 a {
-	color: $color.very_dark_grey;
+	color: var(--theme-text);
 }
 
 a:hover {

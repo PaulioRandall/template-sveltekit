@@ -11,12 +11,11 @@
 	},
 	"scripts": {
 		"clean": "rm -rf .svelte-kit",
-		"fmt": "prettier --plugin prettier-plugin-svelte --log-level warn --write .",
-		"fmt_del": "",
-		"build": "npm run fmt_del && vite build",
-		"dev": "npm run fmt_del && vite dev --port 3000",
+		"fmt": "prettier --log-level warn --write .",
+		"build": "npm run fmt && vite build",
+		"dev": "npm run fmt && vite dev --port 3000",
 		"preview": "npm run build && vite preview --port 4000",
-		"commit": "npm run build && cat ./scripts/ready-to-ship.txt",
+		"commit": "npm run build && cat ./ready-to-ship.txt",
 		"================================================================": "",
 		"auto-build": "vite build"
 	},

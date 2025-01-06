@@ -1,14 +1,19 @@
-
 const map = (sizeMap, userOptions = {}) => {
+	const options = prepMapOptions(userOptions)
 	const result = mappers(sizeMap, userOptions)
 
 	for (const name in result) {
 		const sizer = result[name]
-		result[name] = {
-			px: sizer('px'),
-			em: sizer('em'),
-			rem: sizer('rem'),
-		}
+
+		result[name] = options.formats.reduce((acc, fmt) => {
+			if (fmt === '') {
+				acc[''] = sizer(options.defaultFormat)
+			} else {
+				acc[fmt] = sizer(fmt)
+			}
+
+			return acc
+		}, {})
 	}
 
 	return result
@@ -29,22 +34,23 @@ const mappers = (sizeMap, userOptions = {}) => {
 const prepMapOptions = (userOptions) => {
 	return {
 		pxPerRem: 16.0, // E.g. base font size
+		formats: ['', 'px', 'em', 'rem'],
 		defaultFormat: 'rem',
 		...userOptions,
 	}
 }
 
 const generateMapper = (px, options) => {
-	return (fmt=options.defaultFormat) => {
+	return (fmt = options.defaultFormat) => {
 		switch (fmt) {
-		case 'px':
-			return round(px, 1) + 'px'
-		case 'em':
-			return round(px / options.pxPerRem, 3) + 'em'
-		case 'rem':
-			return round(px / options.pxPerRem, 3) + 'rem'
-		default:
-			throw new Error(`[P69 Util] Size format not supported: '${fmt}'`)
+			case 'px':
+				return round(px, 1) + 'px'
+			case 'em':
+				return round(px / options.pxPerRem, 3) + 'em'
+			case 'rem':
+				return round(px / options.pxPerRem, 3) + 'rem'
+			default:
+				throw new Error(`[P69 Util] Size format not supported: '${fmt}'`)
 		}
 	}
 }
@@ -106,22 +112,24 @@ const calcConversionDenominators = (PX_PER_INCH) => {
 const generateAbsMapper = (px, denominators, options) => {
 	// Not perfect but good enough.
 
-	return (fmt=options.defaultFormat) => {
+	return (fmt = options.defaultFormat) => {
 		switch (fmt) {
-		case 'px':
-			return round(px, 1) + 'px'
-		case 'pt':
-			return round(px / denominators.PX_PER_PT, 1) + 'pt'
-		case 'pc':
-			return round(px / denominators.PX_PER_PC, 2) + 'pc'
-		case 'in':
-			return round(px / denominators.PX_PER_INCH, 3) + 'in'
-		case 'cm':
-			return round(px / denominators.PX_PER_CM, 2) + 'cm'
-		case 'mm':
-			return round(px / denominators.PX_PER_MM, 1) + 'mm'
-		default:
-			throw new Error(`[P69 Util] Absolute size format not supported: '${fmt}'`)
+			case 'px':
+				return round(px, 1) + 'px'
+			case 'pt':
+				return round(px / denominators.PX_PER_PT, 1) + 'pt'
+			case 'pc':
+				return round(px / denominators.PX_PER_PC, 2) + 'pc'
+			case 'in':
+				return round(px / denominators.PX_PER_INCH, 3) + 'in'
+			case 'cm':
+				return round(px / denominators.PX_PER_CM, 2) + 'cm'
+			case 'mm':
+				return round(px / denominators.PX_PER_MM, 1) + 'mm'
+			default:
+				throw new Error(
+					`[P69 Util] Absolute size format not supported: '${fmt}'`
+				)
 		}
 	}
 }
