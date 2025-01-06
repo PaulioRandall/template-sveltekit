@@ -1,51 +1,28 @@
-<script>
-	const navLinks = [
-		{
-			href: '/',
-			text: 'Home',
-		},
-		{
-			href: '/copyright',
-			text: 'Copyright',
-		},
-		{
-			href: '/error',
-			text: 'Error',
-		},
-	]
-</script>
-
-<header id="header" class="header">
-	<nav class="nav">
-		{#each navLinks as { href, text }}
-			<a class="link" {href}>
-				{text}
-			</a>
-		{/each}
+<header>
+	<nav class="side-element">
+		<a href="/">Home</a>
 	</nav>
+	<div>&lt;header&gt;</div>
+	<div class="side-element" />
 </header>
 
 <style>
-	.header {
-		width: 100%;
-		padding-top: var(--space-xs);
-	}
-
-	.nav {
+	header {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		justify-content: space-between;
 
-		gap: var(--space-xs);
-
-		padding: var(--space-xs) 0;
+		width: 100%;
+		padding: var(--space-sm);
+	
+		background: var(--cotheme-bg);
+		border-bottom: 1px solid var(--cotheme-border);
 	}
 
-	@media only screen and (min-width: $width.xs) {
-		.nav {
-			flex-direction: row;
-			gap: var(--space-sm);
-		}
+	a {
+		color: var(--cotheme-text);
+	}
+
+	.side-element {
+		width: 6ch; 
 	}
 </style>

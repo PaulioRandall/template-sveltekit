@@ -2,11 +2,11 @@
 </script>
 
 <main>
-	<h1>Minimalist Sveltekit Template</h1>
+	<h1>&lt;page-title&gt;</h1>
 
 	<section>
-		<h2>A heading</h2>
-		<p>A paragraph...</p>
+		<h2>&lt;heading&gt;</h2>
+		<p>&lt;paragraph&gt;</p>
 	</section>
 </main>
 

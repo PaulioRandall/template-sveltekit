@@ -67,7 +67,6 @@ h1 {
 
 	text-align: center;
 	font-weight: normal;
-	font-style: italic;
 	font-size: var(--font-size-2xl);
 }
 

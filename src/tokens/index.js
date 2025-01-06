@@ -9,23 +9,26 @@ const colors = {
 	light_sky_purple: '#d2d2e6',
 
 	// Light
-	burly_wood: '#deb887',
 	rosy_red: '#ff9191',
+	burly_wood: '#deb887',
+	burly_wood_50: '#deb88788',
 
 	// Mid
 	jet_blue: '#1e55af',
+	jet_blue_50: '#1e55af88',
 	blood_red: '#731010',
+	blood_red_50: '#73101088',
 
 	// Dark
-	dark_grey: '#282828',
+	dark_grey: '#1D1D20',
 	dark_navy: '#050a23',
 
 	// Very dark
 	dark_navy_grey: '#050a3c',
-	very_dark_grey: '#181818',
+	very_dark_grey: '#121212',
 }
 
-const fonts = {
+const font = {
 	size: {
 		// https://utopia.fyi/type/calculator?c=320,14,1.2,1600,18,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12
 		xs: 'clamp(0.60rem, calc(0.58rem + 0.09vw), 0.67rem)',
@@ -75,8 +78,15 @@ export default {
 				bg: colors.ice_cream,
 				text: colors.very_dark_grey,
 				strong: colors.jet_blue,
+				border: colors.jet_blue_50,
 			},
-			font: fonts,
+			cotheme: {
+				bg: colors.very_dark_grey,
+				text: colors.ice_cream,
+				strong: colors.burly_wood,
+				border: 'transparent',
+			},
+			font,
 			width: Sizes.map(widths, {
 				formats: [''],
 				defaultFormat: 'px',
@@ -88,9 +98,16 @@ export default {
 		}),
 		dark: newThemeGenerator({
 			theme: {
+				bg: colors.dark_grey,
+				text: colors.ice_cream,
+				strong: colors.burly_wood,
+				border: colors.blood_red,
+			},
+			cotheme: {
 				bg: colors.very_dark_grey,
 				text: colors.ice_cream,
 				strong: colors.burly_wood,
+				border: colors.blood_red,
 			},
 		}),
 	},
