@@ -103,3 +103,13 @@ a:hover {
 	text-underline-offset: 0.3rem;
 	text-decoration: underline;
 }
+
+.g-theme {
+	color: var(--theme-text);
+	background-color: var(--theme-bg);
+}
+
+.g-cotheme {
+	color: var(--cotheme-text);
+	background-color: var(--cotheme-bg);
+}

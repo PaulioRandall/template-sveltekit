@@ -36,10 +36,10 @@
 	--theme-text: #121212;
 	--theme-strong: #1e55af;
 	--theme-border: #1e55af88;
-	--cotheme-bg: #121212;
+	--cotheme-bg: #1d1d20;
 	--cotheme-text: #fafafa;
 	--cotheme-strong: #deb887;
-	--cotheme-border: transparent;
+	--cotheme-border: #731010;
 	--font-size-xs: clamp(0.60rem, calc(0.58rem + 0.09vw), 0.67rem);
 	--font-size-sm: clamp(0.75rem, calc(0.71rem + 0.18vw), 0.89rem);
 	--font-size-md: clamp(0.94rem, calc(0.88rem + 0.31vw), 1.19rem);
@@ -69,7 +69,7 @@
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--theme-bg: #1D1D20;
+		--theme-bg: #1d1d20;
 		--theme-text: #fafafa;
 		--theme-strong: #deb887;
 		--theme-border: #731010;
@@ -169,5 +169,15 @@ a {
 a:hover {
 	text-underline-offset: 0.3rem;
 	text-decoration: underline;
+}
+
+.g-theme {
+	color: var(--theme-text);
+	background-color: var(--theme-bg);
+}
+
+.g-cotheme {
+	color: var(--cotheme-text);
+	background-color: var(--cotheme-bg);
 }
 

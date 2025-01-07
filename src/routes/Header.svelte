@@ -13,13 +13,6 @@
 
 		width: 100%;
 		padding: var(--space-sm);
-	
-		background: var(--cotheme-bg);
-		border-bottom: 1px solid var(--cotheme-border);
-	}
-
-	a {
-		color: var(--cotheme-text);
 	}
 
 	.side-element {

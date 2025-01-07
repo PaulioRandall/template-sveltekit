@@ -20,7 +20,7 @@ const colors = {
 	blood_red_50: '#73101088',
 
 	// Dark
-	dark_grey: '#1D1D20',
+	dark_grey: '#1d1d20',
 	dark_navy: '#050a23',
 
 	// Very dark
@@ -81,10 +81,10 @@ export default {
 				border: colors.jet_blue_50,
 			},
 			cotheme: {
-				bg: colors.very_dark_grey,
+				bg: colors.dark_grey,
 				text: colors.ice_cream,
 				strong: colors.burly_wood,
-				border: 'transparent',
+				border: colors.blood_red,
 			},
 			font,
 			width: Sizes.map(widths, {
