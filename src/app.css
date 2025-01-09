@@ -100,13 +100,6 @@ body {
 	tab-size: 2;
 }
 
-main {
-	display: flex;
-	flex-direction: column;
-
-	margin: 0 auto var(--space-xl);
-}
-
 section {
 	display: flex;
 	flex-direction: column;

@@ -14,7 +14,7 @@ export default {
 	kit: {
 		adapter: adapter(),
 		alias: {
-			//$routes: path.resolve('./src/routes'),
+			//$lib: path.resolve('./src/lib'),
 		},
 	},
 	preprocess: [P69.svelte(tokens)],

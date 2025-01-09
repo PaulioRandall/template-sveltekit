@@ -1,15 +1,30 @@
 <script>
+	import Container from '$lib/Container.svelte'
 </script>
 
 <main>
 	<h1>&lt;page-title&gt;</h1>
 
-	<section>
-		<h2>&lt;heading&gt;</h2>
-		<p>&lt;paragraph&gt;</p>
-	</section>
+	<Container>
+		<Container>
+			<div class="test"> </div>
+			<div class="test"> </div>		
+		</Container>
+			<Container>
+			<div class="test"> </div>
+			<div class="test"> </div>		
+		</Container>
+	</Container>
 </main>
 
 <style>
+	main {
+		display: flex;
+		flex-direction: column;
+	}
 
+	.test {
+		background: lightblue;
+		height: 50px;
+	}
 </style>
