@@ -1,6 +1,4 @@
-import Colors from './Colors.js'
-import Sizes from './Sizes.js'
-import Variables from './Variables.js'
+import P69Util from '@paulio/p69-util'
 
 const colors = {
 	// Very light
@@ -62,53 +60,57 @@ const spaces = {
 	xl: 128,
 }
 
-const newThemeGenerator = (theme) => {
-	return (prefix = '') => Variables.generate(theme, { prefix })
+const lightTheme = {
+	color: P69Util.colorMap(colors, {
+		formats: ['', 'raw'],
+		defaultFormat: 'hex',
+	}),
+	theme: {
+		bg: colors.ice_cream,
+		text: colors.very_dark_grey,
+		strong: colors.jet_blue,
+		border: colors.jet_blue_50,
+	},
+	cotheme: {
+		bg: colors.dark_grey,
+		text: colors.ice_cream,
+		strong: colors.burly_wood,
+		border: colors.blood_red,
+	},
+	font,
+	width: P69Util.sizeMap(widths, {
+		formats: [''],
+		defaultFormat: 'px',
+	}),
+	space: P69Util.sizeMap(spaces, {
+		formats: ['', 'px'],
+		defaultFormat: 'rem',
+	}),
+}
+
+const darkTheme = {
+	theme: {
+		bg: colors.dark_grey,
+		text: colors.ice_cream,
+		strong: colors.burly_wood,
+		border: colors.blood_red,
+	},
+	cotheme: {
+		bg: colors.very_dark_grey,
+		text: colors.ice_cream,
+		strong: colors.burly_wood,
+		border: colors.blood_red,
+	},
+}
+
+const newVariableGenerator = (theme) => {
+	return (prefix = '') => P69Util.generateVariables(theme, { prefix })
 }
 
 export default {
-	width: Sizes.mappers(widths, { defaultFormat: 'px' }),
+	width: P69Util.sizeMappers(widths, { defaultFormat: 'px' }),
 	variables: {
-		light: newThemeGenerator({
-			color: Colors.map(colors, {
-				formats: ['', 'raw'],
-				defaultFormat: 'hex',
-			}),
-			theme: {
-				bg: colors.ice_cream,
-				text: colors.very_dark_grey,
-				strong: colors.jet_blue,
-				border: colors.jet_blue_50,
-			},
-			cotheme: {
-				bg: colors.dark_grey,
-				text: colors.ice_cream,
-				strong: colors.burly_wood,
-				border: colors.blood_red,
-			},
-			font,
-			width: Sizes.map(widths, {
-				formats: [''],
-				defaultFormat: 'px',
-			}),
-			space: Sizes.map(spaces, {
-				formats: ['', 'px'],
-				defaultFormat: 'rem',
-			}),
-		}),
-		dark: newThemeGenerator({
-			theme: {
-				bg: colors.dark_grey,
-				text: colors.ice_cream,
-				strong: colors.burly_wood,
-				border: colors.blood_red,
-			},
-			cotheme: {
-				bg: colors.very_dark_grey,
-				text: colors.ice_cream,
-				strong: colors.burly_wood,
-				border: colors.blood_red,
-			},
-		}),
+		light: newVariableGenerator(lightTheme),
+		dark: newVariableGenerator(darkTheme),
 	},
 }

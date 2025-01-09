@@ -20,11 +20,12 @@
 		"auto-build": "vite build"
 	},
 	"devDependencies": {
-		"@paulio/p69-svelte": "1.0.0-rc-2",
+		"@paulio/p69-svelte": "1.0.0-rc-3",
+		"@paulio/p69-util": "1.0.0-rc-2",
 		"@sveltejs/adapter-auto": "3.3.1",
-		"@sveltejs/kit": "2.15.1",
+		"@sveltejs/kit": "2.15.2",
 		"prettier": "3.4.2",
-		"svelte": "5.16.1",
+		"svelte": "5.17.1",
 		"vite": "6.0.7"
 	}
 }

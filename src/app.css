@@ -14,15 +14,15 @@
 	--color-rosy_red-raw: 255,145,145;
 	--color-burly_wood: #deb887;
 	--color-burly_wood-raw: 222,184,135;
-	--color-burly_wood_50: #deb88788;
+	--color-burly_wood_50: #deb887;
 	--color-burly_wood_50-raw: 222,184,135;
 	--color-jet_blue: #1e55af;
 	--color-jet_blue-raw: 30,85,175;
-	--color-jet_blue_50: #1e55af88;
+	--color-jet_blue_50: #1e55af;
 	--color-jet_blue_50-raw: 30,85,175;
 	--color-blood_red: #731010;
 	--color-blood_red-raw: 115,16,16;
-	--color-blood_red_50: #73101088;
+	--color-blood_red_50: #731010;
 	--color-blood_red_50-raw: 115,16,16;
 	--color-dark_grey: #1d1d20;
 	--color-dark_grey-raw: 29,29,32;
@@ -64,7 +64,7 @@
 	--space-lg: 4rem;
 	--space-lg-px: 64px;
 	--space-xl: 8rem;
-	--space-xl-px: 128px;
+	--space-xl-px: 128px;;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,7 +76,7 @@
 		--cotheme-bg: #121212;
 		--cotheme-text: #fafafa;
 		--cotheme-strong: #deb887;
-		--cotheme-border: #731010;
+		--cotheme-border: #731010;;
 	}
 }
 
